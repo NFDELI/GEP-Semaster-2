@@ -5,11 +5,19 @@
     <projectFile>Intermediate/ProjectFiles/MyProject.vcxproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="feff9d7f-fd3e-46d3-8512-80791f48f36f" name="Changes" comment="" />
+    <list default="true" id="feff9d7f-fd3e-46d3-8512-80791f48f36f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MyProject/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyProject/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/StarterContent/Architecture/Floor_400x400.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/StarterContent/Architecture/Floor_400x400.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/StarterContent/Audio/Collapse01.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/StarterContent/Audio/Collapse01.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/8/Z7/W1SXRCM1KAKBJOIZDLHZ47.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/8/Z7/W1SXRCM1KAKBJOIZDLHZ47.uasset" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2Lrrr8XAyT8QeMTkLYI6TXpn2Xq" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -149,6 +157,8 @@
       <updated>1676640240651</updated>
       <workItem from="1676640252183" duration="574000" />
       <workItem from="1676640909958" duration="219000" />
+      <workItem from="1676641394916" duration="795000" />
+      <workItem from="1676642483093" duration="1321000" />
     </task>
     <servers />
   </component>

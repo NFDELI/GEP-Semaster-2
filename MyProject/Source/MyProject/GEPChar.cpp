@@ -1,8 +1,12 @@
 #include "GEPChar.h"
 
 #include "EnhancedInputComponent.h"
+#include "EnhancedInputSubsystems.h"
+#include "Fireable.h"
+#include "Weapon_Base.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "Kismet/KismetSystemLibrary.h"
 
 AGEPChar::AGEPChar()
 {
@@ -20,6 +24,27 @@ AGEPChar::AGEPChar()
 void AGEPChar::BeginPlay()
 {
 	Super::BeginPlay();
+
+	if(_DefaultWeapon)
+	{
+		FActorSpawnParameters spawnParams;
+		spawnParams.Owner = this;
+		spawnParams.Instigator = this;
+		TObjectPtr<AActor> spawnedGun = GetWorld()->SpawnActor(_DefaultWeapon, &_WeaponAttachPoint->GetComponentTransform(), spawnParams);
+		spawnedGun->AttachToComponent(_WeaponAttachPoint, FAttachmentTransformRules::SnapToTargetIncludingScale);
+		if(UKismetSystemLibrary::DoesImplementInterface(spawnedGun, UFireable::StaticClass()))
+		{
+			_FireableRef = spawnedGun;
+		}
+	}
+
+	if(APlayerController* PlayerController = Cast<APlayerController>(Controller))
+	{
+		if(UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
+		{
+			Subsystem->AddMappingContext(PlayerMappingContext, 0);
+		}
+	}
 }
 
 void AGEPChar::Move(const FInputActionValue& Value)
@@ -46,6 +71,10 @@ void AGEPChar::Look(const FInputActionValue& Value)
 
 void AGEPChar::Shoot()
 {
+	if(_FireableRef)
+	{
+		IFireable::Execute_Fire(_FireableRef);
+	}
 }
 
 void AGEPChar::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)

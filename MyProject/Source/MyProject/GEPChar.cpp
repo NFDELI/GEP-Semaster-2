@@ -22,6 +22,24 @@ AGEPChar::AGEPChar()
 	_WeaponAttachPoint->SetupAttachment(_Camera);
 }
 
+void AGEPChar::Init_Implementation()
+{
+	if(_DefaultWeapon)
+	{
+		//Spawning Gun for player to use.
+		FActorSpawnParameters spawnParams;
+		spawnParams.Owner = this;
+		spawnParams.Instigator = this;
+		TObjectPtr<AActor> spawnedGun = GetWorld()->SpawnActor(_DefaultWeapon, &_WeaponAttachPoint->GetComponentTransform(), spawnParams);
+		spawnedGun->AttachToComponent(_WeaponAttachPoint, FAttachmentTransformRules::SnapToTargetIncludingScale);
+		if(UKismetSystemLibrary::DoesImplementInterface(spawnedGun, UFireable::StaticClass()))
+		{
+			//Linking gun so player can shoot it.
+			_FireableRef = spawnedGun;
+		}
+	}
+}
+
 void AGEPChar::BeginPlay()
 {
 	Super::BeginPlay();

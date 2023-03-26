@@ -41,6 +41,9 @@ public:
 	// Sets default values for this character's properties
 	AGEPChar();
 
+	UFUNCTION(BlueprintNativeEvent)
+	void Init();
+
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<AWeapon_Base> _DefaultWeapon;

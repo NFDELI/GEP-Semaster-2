@@ -48,5 +48,5 @@ void AGEPPlayerController::Handle_MatchStarted_Implementation()
 
 void AGEPPlayerController::Handle_MatchEnded_Implementation()
 {
-	IMatchStateHandler::Handle_MatchEnded_Implementation();
+	//SetInputMode(FInputModeUIOnly());
 }

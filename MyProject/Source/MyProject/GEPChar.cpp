@@ -40,35 +40,6 @@ void AGEPChar::Init_Implementation()
 	}
 }
 
-void AGEPChar::BeginPlay()
-{
-	Super::BeginPlay();
-
-	if(_DefaultWeapon)
-	{
-		//Spawning Gun for player to use.
-		FActorSpawnParameters spawnParams;
-		spawnParams.Owner = this;
-		spawnParams.Instigator = this;
-		TObjectPtr<AActor> spawnedGun = GetWorld()->SpawnActor(_DefaultWeapon, &_WeaponAttachPoint->GetComponentTransform(), spawnParams);
-		spawnedGun->AttachToComponent(_WeaponAttachPoint, FAttachmentTransformRules::SnapToTargetIncludingScale);
-		if(UKismetSystemLibrary::DoesImplementInterface(spawnedGun, UFireable::StaticClass()))
-		{
-			//Linking gun so player can shoot it.
-			_FireableRef = spawnedGun;
-		}
-	}
-
-	if(APlayerController* PlayerController = Cast<APlayerController>(Controller))
-	{
-		if(UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
-		{
-			//Turning On Controllers.
-			Subsystem->AddMappingContext(PlayerMappingContext, 0);
-		}
-	}
-}
-
 void AGEPChar::Move(const FInputActionValue& Value)
 {
 	FVector2D MovementVector = Value.Get<FVector2D>();

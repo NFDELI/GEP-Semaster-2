@@ -50,9 +50,6 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TObjectPtr<AActor> _FireableRef;
-	
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
 
 	void Move (const FInputActionValue& Value);
 

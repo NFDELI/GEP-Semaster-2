@@ -23,12 +23,12 @@ bool AWeapon_Hitscan::Fire_Implementation()
 
 	if(UKismetSystemLibrary::LineTraceSingle(world, start, end,
 		UEngineTypes::ConvertToTraceType(ECC_GameTraceChannel2), false,
-		ActorsToIgnore, EDrawDebugTrace::ForDuration, hit, true, FLinearColor::Red,
-		FLinearColor::Green, 5))
+		ActorsToIgnore, EDrawDebugTrace::ForDuration, hit, true, FLinearColor::Blue,
+		FLinearColor::Yellow, 5))
 	{
 		//Do damage here?
-		UE_LOG(LogWeaponHitScan, Display, TEXT("Hit position: %s"), *hit.ImpactPoint.ToString());
+		UE_LOG(LogWeaponHitScan, Display, TEXT("Hit position!!: %s"), *hit.GetActor()->GetActorLabel());
+		//UE_LOG(LogWeaponHitScan, Display, TEXT("Hit Position!!: %s"), *hit.GetActor()->GetName());
 	}
-
 	return true;
 }

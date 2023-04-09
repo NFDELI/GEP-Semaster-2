@@ -4,6 +4,7 @@
 #include "Components/ArrowComponent.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "Engine/World.h"
+#include "Kismet/GameplayStatics.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogWeaponHitScan, Display, All);
 
@@ -32,9 +33,17 @@ bool AWeapon_Hitscan::Fire_Implementation()
 			//Do damage here?
 			//UE_LOG(LogWeaponHitScan, Display, TEXT("Hit position!!: %s"), *hit.GetActor()->GetActorLabel());
 			//UE_LOG(LogWeaponHitScan, Display, TEXT("Hit Class!!: %s"), *hit.GetActor()->GetClass());
-			if(hit.GetActor()->GetActorLabel() == "BP_Target_Shootable")
+			//if(hit.GetActor()->GetActorLabel() == "BP_Target_Shootable")
+			//{
+			//	UE_LOG(LogWeaponHitScan, Display, TEXT("Hit position!!: %s"), *hit.GetActor()->GetActorLabel());
+			//	ATarget_Shootable* temp = Cast<ATarget_Shootable>();
+			//	hit.Get
+//
+			//	//hit.GetActor()->GetClass()
+			//}
+			if(auto target = Cast<ATarget_Shootable>(hit.GetActor()))
 			{
-				UE_LOG(LogWeaponHitScan, Display, TEXT("Hit position!!: %s"), *hit.GetActor()->GetActorLabel());
+				target->ShottedAt();
 			}
 		}
 		return true;

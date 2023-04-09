@@ -4,5 +4,5 @@ DEFINE_LOG_CATEGORY_STATIC(LogTargetShootable, Display, All);
 
 void ATarget_Shootable::ShottedAt()
 {
-	UE_LOG(LogTargetShootable, Display, TEXT("Firing hitscan weapon class"));
+	UE_LOG(LogTargetShootable, Display, TEXT("TARGET_SHOOTABLE is Shot AT"));
 }

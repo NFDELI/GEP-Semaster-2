@@ -14,12 +14,28 @@ AWeapon_Base::AWeapon_Base()
 
 	_Muzzle = CreateDefaultSubobject<UArrowComponent>(TEXT("Muzzle"));
 	_Muzzle->SetupAttachment(_Mesh);
+
+	//_MaxBullets = 5.0;
+	_CurrentBullets = _MaxBullets;
 }
 
 bool AWeapon_Base::Fire_Implementation()
 {
 	UE_LOG(LogWeaponBase, Display, TEXT("Firing the base weapon class!"));
 	return true;
+}
+
+bool AWeapon_Base::Bullet_Spent()
+{
+	//Gun still have bullets.
+	if(_CurrentBullets > 0)
+	{
+		_CurrentBullets--;
+		return true;
+	}
+
+	//Gun ran out of bullets, return false;
+	return false;
 }
 
 void AWeapon_Base::BeginPlay()

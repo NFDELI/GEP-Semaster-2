@@ -43,7 +43,8 @@ bool AWeapon_Hitscan::Fire_Implementation()
 			//}
 			if(auto target = Cast<ATarget_Shootable>(hit.GetActor()))
 			{
-				target->ShottedAt();
+				target->ShottedAt(_GunDamage);
+				//UE_LOG(LogWeaponHitScan, Display, TEXT("SHOTAT IS CALLED"));
 			}
 		}
 		return true;

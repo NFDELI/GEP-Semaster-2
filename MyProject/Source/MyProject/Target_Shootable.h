@@ -13,6 +13,17 @@ class MYPROJECT_API ATarget_Shootable : public ATarget_Base
 	GENERATED_BODY()
 
 public:
-	virtual void ShottedAt() override;
+	ATarget_Shootable();
 	
+	virtual void ShottedAt(float damage) override;
+	void ColorChange();
+	void TakeDamage(float damage);
+	void TargetDeath();
+
+protected:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float _MaxHealth;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float _CurrentHealth;
 };

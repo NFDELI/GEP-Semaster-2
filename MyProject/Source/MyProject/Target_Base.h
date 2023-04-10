@@ -18,7 +18,7 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-	virtual void ShottedAt();
+	virtual void ShottedAt(float damage);
 	virtual void TeleAway();
 
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly)
@@ -26,4 +26,13 @@ protected:
 	
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly)
 	TObjectPtr<USkeletalMeshComponent> _Mesh;
+
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly)
+	TObjectPtr<UStaticMeshComponent> _StaticMesh;
+	
+	UPROPERTY(EditAnywhere, Category="Materials")
+	UMaterialInterface* MaterialOne;
+	
+	UPROPERTY(EditAnywhere, Category="Materials")
+	UMaterialInterface* MaterialTwo;
 };

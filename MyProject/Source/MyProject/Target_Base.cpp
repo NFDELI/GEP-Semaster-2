@@ -9,6 +9,12 @@ ATarget_Base::ATarget_Base()
 
 	_Mesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Mesh"));
 	_Mesh->SetupAttachment(_Root);
+
+	_StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMesh"));
+	_StaticMesh->SetupAttachment(_Root);
+
+	MaterialOne = CreateDefaultSubobject<UMaterialInterface>("MaterialOne");
+	MaterialTwo = CreateDefaultSubobject<UMaterialInterface>("MaterialTwo");
 }
 
 // Called when the game starts or when spawned
@@ -17,7 +23,7 @@ void ATarget_Base::BeginPlay()
 	Super::BeginPlay();
 }
 
-void ATarget_Base::ShottedAt()
+void ATarget_Base::ShottedAt(float damage)
 {
 	//Do reaction of being shot at here.
 	TeleAway();

@@ -1,5 +1,6 @@
 ﻿#include "Weapon_Hitscan.h"
 
+#include "PlayerStatsUIWidget.h"
 #include "Target_Shootable.h"
 #include "Components/ArrowComponent.h"
 #include "Kismet/KismetSystemLibrary.h"
@@ -14,6 +15,8 @@ bool AWeapon_Hitscan::Fire_Implementation()
 	{
 		UE_LOG(LogWeaponHitScan, Display, TEXT("Firing hitscan weapon class"));
 
+		
+		
 		UWorld* const world = GetWorld();
 		if(world == nullptr)
 		{

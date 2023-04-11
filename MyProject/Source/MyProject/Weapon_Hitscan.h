@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Weapon_Base.h"
+#include "Components/ProgressBar.h"
 #include "GameFramework/Actor.h"
 #include "Weapon_Hitscan.generated.h"
 

@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Fireable.h"
+#include "PlayerStatsUIWidget.h"
 #include "Components/ArrowComponent.h"
 #include "GameFramework/Actor.h"
 #include "Weapon_Base.generated.h"
@@ -35,12 +36,13 @@ protected:
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly)
 	TObjectPtr<UArrowComponent> _Muzzle;
 
+	UPROPERTY(EditDefaultsOnly, Category = UI, meta=(AllowPrivateAccess = "true"))
+	TSubclassOf<UPlayerStatsUIWidget> UPlayerStats;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float _MaxBullets;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float _CurrentBullets;
-
-	//UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
-	//TObjectPtr<UTextBlock> _HUD;
+	
 };

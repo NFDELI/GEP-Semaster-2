@@ -15,6 +15,9 @@ AWeapon_Base::AWeapon_Base()
 	_Muzzle = CreateDefaultSubobject<UArrowComponent>(TEXT("Muzzle"));
 	_Muzzle->SetupAttachment(_Mesh);
 
+	//_HUD = CreateDefaultSubobject<UTextBlock>(TEXT("HUD"));
+	
+
 	//_MaxBullets = 5.0;
 	_CurrentBullets = _MaxBullets;
 }
@@ -31,6 +34,7 @@ bool AWeapon_Base::Bullet_Spent()
 	if(_CurrentBullets > 0)
 	{
 		_CurrentBullets--;
+		//HUD->SetText(FText::FromString("Test Text"));
 		return true;
 	}
 

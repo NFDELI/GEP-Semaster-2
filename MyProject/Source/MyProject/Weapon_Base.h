@@ -40,5 +40,7 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float _CurrentBullets;
-	
+
+	//UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
+	//TObjectPtr<UTextBlock> _HUD;
 };

@@ -15,7 +15,7 @@ bool AWeapon_Hitscan::Fire_Implementation()
 	{
 		UE_LOG(LogWeaponHitScan, Display, TEXT("Firing hitscan weapon class"));
 
-		
+		_HealthUI->UpdateHealthBar(0.1f);		
 		
 		UWorld* const world = GetWorld();
 		if(world == nullptr)

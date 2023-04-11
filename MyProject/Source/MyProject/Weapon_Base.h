@@ -23,6 +23,9 @@ public:
 	virtual bool Fire_Implementation() override;
 	virtual bool Bullet_Spent();
 
+	//UPROPERTY(EditAnywhere, Category=UI)
+	//UPlayerStatsUIWidget* _PlayerWidget;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -35,9 +38,6 @@ protected:
 	
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly)
 	TObjectPtr<UArrowComponent> _Muzzle;
-
-	UPROPERTY(EditDefaultsOnly, Category = UI, meta=(AllowPrivateAccess = "true"))
-	TSubclassOf<UPlayerStatsUIWidget> UPlayerStats;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float _MaxBullets;

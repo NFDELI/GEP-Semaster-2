@@ -16,6 +16,8 @@ AWeapon_Base::AWeapon_Base()
 
 	_Muzzle = CreateDefaultSubobject<UArrowComponent>(TEXT("Muzzle"));
 	_Muzzle->SetupAttachment(_Mesh);
+
+	//_HealthUI = CreateAbstractDefaultSubobject<UPlayerStatsUIWidget>(TEXT("UI"));
 	
 	//_MaxBullets = 5.0;
 	_CurrentBullets = _MaxBullets;
@@ -33,8 +35,10 @@ bool AWeapon_Base::Bullet_Spent()
 	if(_CurrentBullets > 0)
 	{
 		_CurrentBullets--;
+		//_HealthUI->UpdateHealthBar(0.1f);
+		//CALL UPDATE HEALTH HERE.
+		//_PlayerWidget->UpdateHealthBar(.1f);
 		
-		//HUD->SetText(FText::FromString("Test Text"));
 		return true;
 	}
 

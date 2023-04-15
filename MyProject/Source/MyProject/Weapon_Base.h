@@ -21,6 +21,7 @@ public:
 	AWeapon_Base();
 
 	virtual bool Fire_Implementation() override;
+	virtual bool Reload_Implementation() override;
 	virtual bool Bullet_Spent();
 
 	//UPROPERTY(EditAnywhere, Category=UI)
@@ -44,5 +45,7 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float _CurrentBullets;
-	
+
+	//UFUNCTION(BlueprintCallable, Category="Weapon")
+	//void Reload();
 };

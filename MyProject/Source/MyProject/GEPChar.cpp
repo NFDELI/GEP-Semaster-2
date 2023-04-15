@@ -22,6 +22,11 @@ AGEPChar::AGEPChar()
 	_WeaponAttachPoint->SetupAttachment(_Camera);
 }
 
+void AGEPChar::BeginPlay()
+{
+	Super::BeginPlay();
+}
+
 void AGEPChar::Init_Implementation()
 {
 	if(_DefaultWeapon)
@@ -70,6 +75,14 @@ void AGEPChar::Shoot()
 	}
 }
 
+void AGEPChar::Reload()
+{
+	if(_FireableRef)
+	{
+		IFireable::Execute_Reload(_FireableRef);
+	}
+}
+
 void AGEPChar::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	if(UEnhancedInputComponent* EnchancedInputComponent = CastChecked<UEnhancedInputComponent>(PlayerInputComponent))
@@ -82,5 +95,7 @@ void AGEPChar::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 		EnchancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AGEPChar::Look);
 		
 		EnchancedInputComponent->BindAction(ShootAction, ETriggerEvent::Triggered, this, &AGEPChar::Shoot);
+		
+		EnchancedInputComponent->BindAction(ReloadAction, ETriggerEvent::Triggered, this, &AGEPChar::Reload);
 	}
 }

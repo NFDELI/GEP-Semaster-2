@@ -15,7 +15,8 @@ bool AWeapon_Hitscan::Fire_Implementation()
 	{
 		UE_LOG(LogWeaponHitScan, Display, TEXT("Firing hitscan weapon class"));
 
-		_HealthUI->UpdateHealthBar(0.1f);		
+		//Attempted to Update Health UI when the player shoots, need help getting reference to the Health UI component.
+		//_HealthUI->UpdateHealthBar(0.1f);		
 		
 		UWorld* const world = GetWorld();
 		if(world == nullptr)
@@ -54,5 +55,18 @@ bool AWeapon_Hitscan::Fire_Implementation()
 	}
 
 	//Player has no bullets to shoot.
+	return false;
+}
+
+bool AWeapon_Hitscan::Reload_Implementation()
+{
+	//Only reload when possible.
+	if(_CurrentBullets <= _MaxBullets)
+	{
+		UE_LOG(LogWeaponHitScan, Display, TEXT("Reloading! hitscan weapon class"));
+		//Reload the gun (call in blueprint)
+		_CurrentBullets = _MaxBullets;
+		return true;
+	}
 	return false;
 }

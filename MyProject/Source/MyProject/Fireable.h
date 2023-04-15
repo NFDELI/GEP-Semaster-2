@@ -24,4 +24,7 @@ class MYPROJECT_API IFireable
 public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	bool Fire();
+
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+	bool Reload();
 };

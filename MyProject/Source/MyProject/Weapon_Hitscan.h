@@ -15,6 +15,7 @@ class MYPROJECT_API AWeapon_Hitscan : public AWeapon_Base
 	
 public:
 	virtual bool Fire_Implementation() override;
+	virtual bool Reload_Implementation() override;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float _GunDamage;

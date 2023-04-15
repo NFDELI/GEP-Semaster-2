@@ -37,6 +37,9 @@ class MYPROJECT_API AGEPChar : public ACharacter
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = TexCreate_InputAttachmentRead, meta=(AllowPrivateAccess="true"))
 	UInputAction* ShootAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = TexCreate_InputAttachmentRead, meta=(AllowPrivateAccess="true"))
+	UInputAction* ReloadAction;
 public:
 	// Sets default values for this character's properties
 	AGEPChar();
@@ -51,11 +54,15 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TObjectPtr<AActor> _FireableRef;
 
+	virtual void BeginPlay() override;
+	
 	void Move (const FInputActionValue& Value);
 
 	void Look (const FInputActionValue& Value);
 
 	void Shoot();
+
+	void Reload();
 	
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;

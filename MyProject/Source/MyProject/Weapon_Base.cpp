@@ -29,6 +29,12 @@ bool AWeapon_Base::Fire_Implementation()
 	return true;
 }
 
+bool AWeapon_Base::Reload_Implementation()
+{
+	UE_LOG(LogWeaponBase, Display, TEXT("Reload! the base weapon class!"));
+	return true;
+}
+
 bool AWeapon_Base::Bullet_Spent()
 {
 	//Gun still have bullets.
@@ -50,3 +56,13 @@ void AWeapon_Base::BeginPlay()
 {
 	Super::BeginPlay();
 }
+
+//void AWeapon_Base::Reload()
+//{
+//	//Only reload when possible.
+//	if(_CurrentBullets >= _MaxBullets)
+//	{
+//		//Reload the gun (call in blueprint)
+//		_CurrentBullets = _MaxBullets;
+//	}
+//}

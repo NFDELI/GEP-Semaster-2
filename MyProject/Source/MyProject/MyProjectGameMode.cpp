@@ -2,6 +2,7 @@
 
 #include "MyProjectGameMode.h"
 
+#include "GameRule.h"
 #include "GEPPlayerController.h"
 #include "MyProjectCharacter.h"
 #include "GameFramework/PlayerStart.h"
@@ -12,6 +13,7 @@ AMyProjectGameMode::AMyProjectGameMode()
 	: Super()
 {
 	_CountdownTimer = 3;
+	_GameRulesLeft = 0;
 }
 
 AActor* AMyProjectGameMode::FindPlayerStart_Implementation(AController* Player, const FString& IncomingName)
@@ -59,12 +61,43 @@ void AMyProjectGameMode::DecreaseCountDown()
 	}
 }
 
+void AMyProjectGameMode::Handle_GameRuleCompleted(UGameRule* rule)
+{
+	if(*_GameRuleManagers.Find(rule)) { return; }
+
+	_GameRulesLeft--;
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Black,
+		FString::Printf(TEXT("GameRule completed. %d Remaining!"), _GameRulesLeft));
+
+	if(_GameRulesLeft != 0) { return; }
+
+	EndMatch();
+}
+
+void AMyProjectGameMode::Handle_GameRulePointsScored(AController* scorer, int points)
+{
+}
+
 void AMyProjectGameMode::BeginPlay()
 {
 	Super::BeginPlay();
 
-	//TODO: Add gamerule stuff here
-	
+	TArray<UActorComponent*> outComponents;
+	GetComponents(outComponents);
+	for(UActorComponent* comp : outComponents)
+	{
+		if(UGameRule* rule = Cast<UGameRule>(comp))
+		{
+			_GameRuleManagers.Add(rule, rule->_IsOptional);
+			rule->Init();
+			rule->OnGameRuleCompleted.AddDynamic(this, &AMyProjectGameMode::Handle_GameRuleCompleted);
+			rule->OnGameRulePointsScored.AddDynamic(this, &AMyProjectGameMode::Handle_GameRulePointsScored);
+			if(!rule->_IsOptional)
+			{
+				_GameRulesLeft++;
+			}
+		}
+	}
 }
 
 void AMyProjectGameMode::HandleMatchIsWaitingToStart()

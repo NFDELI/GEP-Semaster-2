@@ -57,12 +57,3 @@ void AWeapon_Base::BeginPlay()
 	Super::BeginPlay();
 }
 
-//void AWeapon_Base::Reload()
-//{
-//	//Only reload when possible.
-//	if(_CurrentBullets >= _MaxBullets)
-//	{
-//		//Reload the gun (call in blueprint)
-//		_CurrentBullets = _MaxBullets;
-//	}
-//}

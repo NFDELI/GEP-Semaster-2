@@ -2,6 +2,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "HealthComponent.h"
 #include "Target.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FTargetDestroyedSignature, AActor*, target, AController*, delegateInstigator);
@@ -21,8 +22,8 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	//TObjectPtr<UHealthComponent> _HealthComp;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<UHealthComponent> _HealthComp;
 
 private:
 	UFUNCTION()

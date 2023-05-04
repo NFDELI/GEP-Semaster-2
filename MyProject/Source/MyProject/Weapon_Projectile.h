@@ -18,4 +18,5 @@ class MYPROJECT_API AWeapon_Projectile : public AWeapon_Base
 	
 public:
 	virtual bool Fire_Implementation() override;
+	virtual bool Reload_Implementation() override;
 };

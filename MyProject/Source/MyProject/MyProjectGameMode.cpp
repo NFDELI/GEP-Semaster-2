@@ -76,6 +76,10 @@ void AMyProjectGameMode::Handle_GameRuleCompleted(UGameRule* rule)
 
 void AMyProjectGameMode::Handle_GameRulePointsScored(AController* scorer, int points)
 {
+	if(AGEPPlayerController* castedPC = Cast<AGEPPlayerController>(scorer))
+	{
+		castedPC->AddScore(points);
+	}
 }
 
 void AMyProjectGameMode::BeginPlay()

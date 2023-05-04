@@ -8,6 +8,7 @@
 #include "GEPPlayerController.generated.h"
 
 class UInputMappingContext;
+class UWidget_Score;
 
 UCLASS(Abstract)
 class MYPROJECT_API AGEPPlayerController : public APlayerController, public IMatchStateHandler
@@ -23,10 +24,18 @@ public:
 	virtual void Handle_MatchStarted_Implementation() override;
 	virtual void Handle_MatchEnded_Implementation() override;
 
+	void AddScore(int amount);
+
 protected:
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<APawn> _PawnToSpawn;
 
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UWidget_Score> _ScoreWidgetClass;
+	TObjectPtr<UWidget_Score> _ScoreWidget;
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess="true"))
 	TObjectPtr<UInputMappingContext> DefaultMappingContext;
+
+	int _Score;
 };

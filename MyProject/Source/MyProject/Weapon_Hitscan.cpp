@@ -45,6 +45,8 @@ bool AWeapon_Hitscan::Fire_Implementation()
 //
 			//	//hit.GetActor()->GetClass()
 			//}
+
+			UGameplayStatics::ApplyDamage(hit.GetActor(), 100.f, GetInstigatorController(), this, UDamageType::StaticClass());
 			if(auto target = Cast<ATarget_Shootable>(hit.GetActor()))
 			{
 				target->ShottedAt(_GunDamage);

@@ -5,11 +5,13 @@
 
 #include "EnhancedInputSubsystems.h"
 #include "GEPChar.h"
+#include "Widget_Score.h"
 #include "GameFramework/GameModeBase.h"
 #include "Kismet/GameplayStatics.h"
 
 AGEPPlayerController::AGEPPlayerController() : Super()
 {
+	_Score = 0;
 }
 
 void AGEPPlayerController::Init_Implementation()
@@ -23,6 +25,12 @@ void AGEPPlayerController::Init_Implementation()
 	if(GetPawn() != nullptr)
 	{
 		GetPawn()->Destroy();
+	}
+
+	if(_ScoreWidgetClass)
+	{
+		_ScoreWidget = CreateWidget<UWidget_Score, AGEPPlayerController*>(this, _ScoreWidgetClass.Get());
+		_ScoreWidget->AddToViewport();
 	}
 }
 
@@ -49,4 +57,13 @@ void AGEPPlayerController::Handle_MatchStarted_Implementation()
 void AGEPPlayerController::Handle_MatchEnded_Implementation()
 {
 	//SetInputMode(FInputModeUIOnly());
+}
+
+void AGEPPlayerController::AddScore(int amount)
+{
+	_Score += amount;
+	if(_ScoreWidget != nullptr)
+	{
+		_ScoreWidget->UpdateScore(_Score);
+	}
 }

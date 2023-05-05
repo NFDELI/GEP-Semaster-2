@@ -5,6 +5,9 @@
 #include "Blueprint/UserWidget.h"
 #include "EntitySystem/MovieSceneComponentTypeInfo.h"
 #include "Kismet/GameplayStatics.h"
+#include "GameRule.h"
+#include "GEPChar.h"
+#include "GEPPlayerController.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogWeaponBase, Display, All);
 
@@ -44,9 +47,11 @@ bool AWeapon_Base::Bullet_Spent()
 	{
 		_CurrentBullets--;
 		UGameplayStatics::SpawnEmitterAttached(_MuzzleFlash, _Mesh,TEXT("Muzzle"), FVector(0, 0, 0), FRotator(0, 0, 0), FVector(0.2));
-		//_HealthUI->UpdateHealthBar(0.1f);
-		//CALL UPDATE HEALTH HERE.
-		//_PlayerWidget->UpdateHealthBar(.1f);
+		//AGEPPlayerController::ChangeAmmo(_CurrentBullets, _MaxBullets);
+		if(_AmmoCounter)
+		{
+			_AmmoCounter->UpdateAmmo(_CurrentBullets, _MaxBullets);
+		}
 		
 		return true;
 	}

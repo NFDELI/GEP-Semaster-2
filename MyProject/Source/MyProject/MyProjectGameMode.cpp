@@ -87,6 +87,14 @@ void AMyProjectGameMode::Handle_GameRulePointsScored(AController* scorer, int po
 	}
 }
 
+void AMyProjectGameMode::Handle_AmmoChange(AController* reloader, int ammo, int maxAmmo)
+{
+	if(AGEPPlayerController* castedPC = Cast<AGEPPlayerController>(reloader))
+	{
+		castedPC->ChangeAmmo(ammo, maxAmmo);
+	}
+}
+
 void AMyProjectGameMode::BeginPlay()
 {
 	Super::BeginPlay();

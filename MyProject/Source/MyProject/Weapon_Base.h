@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Fireable.h"
 #include "PlayerStatsUIWidget.h"
+#include "Widget_Bullets.h"
 #include "Components/ArrowComponent.h"
 #include "GameFramework/Actor.h"
 #include "Weapon_Base.generated.h"
@@ -42,6 +43,9 @@ protected:
 
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UParticleSystem> _MuzzleFlash;
+
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UWidget_Bullets> _AmmoCounter;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float _MaxBullets;

@@ -6,12 +6,12 @@
 #include "BaseWidget.h"
 #include "Components/EditableTextBox.h"
 #include "Components/ProgressBar.h"
+#include "Components/TextBlock.h"
 #include "PlayerStatsUIWidget.generated.h"
 
-/**
- * 
- */
 class UProgressBar;
+class UTextBlock;
+
 UCLASS(Abstract, BlueprintType)
 class MYPROJECT_API UPlayerStatsUIWidget : public UBaseWidget
 {
@@ -20,8 +20,6 @@ class MYPROJECT_API UPlayerStatsUIWidget : public UBaseWidget
 private:
 	UPROPERTY(meta = (BindWidget))
 	TObjectPtr<UProgressBar> HealthBar;
-	
-	//UProgressBar* HealthBar;
 
 public:
 	virtual void NativeConstruct() override;

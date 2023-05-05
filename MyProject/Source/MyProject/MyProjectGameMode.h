@@ -40,6 +40,8 @@ protected:
 	void Handle_GameRuleCompleted(UGameRule* rule);
 	UFUNCTION()
 	void Handle_GameRulePointsScored(AController* scorer, int points);
+	UFUNCTION()
+	void Handle_AmmoChange(AController* reloader, int ammo, int maxAmmo);
 
 	virtual void BeginPlay() override;
 

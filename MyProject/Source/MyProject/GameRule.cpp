@@ -18,3 +18,8 @@ void UGameRule::BroadcastGameRulePointsScored(AController* scorer, int points)
 {
 	OnGameRulePointsScored.Broadcast(scorer, points);
 }
+
+void UGameRule::BroadcastGameRuleAmmoChanged(AController* reloader, int ammo, int maxAmmo)
+{
+	OnGameRuleAmmoChanged.Broadcast(reloader, ammo, maxAmmo);
+}

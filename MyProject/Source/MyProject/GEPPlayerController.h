@@ -5,11 +5,13 @@
 #include "CoreMinimal.h"
 #include "MatchStateHandler.h"
 #include "Components/ProgressBar.h"
+#include "Components/TextBlock.h"
 #include "GameFramework/PlayerController.h"
 #include "GEPPlayerController.generated.h"
 
 class UInputMappingContext;
 class UWidget_Score;
+class UWidget_Bullets;
 class UPlayerStatsUIWidget;
 
 UCLASS(Abstract)
@@ -28,6 +30,7 @@ public:
 
 	void AddScore(int amount);
 	void DecreaseHp(float amount);
+	void ChangeAmmo(int ammo, int maxAmmo);
 
 protected:
 	UPROPERTY(EditAnywhere)
@@ -38,6 +41,10 @@ protected:
 	TObjectPtr<UWidget_Score> _ScoreWidget;
 
 	UPROPERTY(EditAnywhere)
+	TSubclassOf<UWidget_Bullets> _AmmoCounterClass;
+	TObjectPtr<UWidget_Bullets> _AmmoCounter;
+
+	UPROPERTY(EditAnywhere)
 	TSubclassOf<UPlayerStatsUIWidget> _HpProgressBarClass;
 	TObjectPtr<UPlayerStatsUIWidget> _HpProgressBar;
 
@@ -46,4 +53,5 @@ protected:
 
 	int _Score;
 	float _Hp;
+	int _Ammo;
 };

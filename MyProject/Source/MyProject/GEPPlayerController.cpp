@@ -1,11 +1,9 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "GEPPlayerController.h"
 
 #include "EnhancedInputSubsystems.h"
 #include "GEPChar.h"
 #include "PlayerStatsUIWidget.h"
+#include "Widget_Bullets.h"
 #include "Widget_Score.h"
 #include "GameFramework/GameModeBase.h"
 #include "Kismet/GameplayStatics.h"
@@ -14,6 +12,7 @@ AGEPPlayerController::AGEPPlayerController() : Super()
 {
 	_Score = 0;
 	_Hp = 1.0f;
+	_Ammo = 0;
 }
 
 void AGEPPlayerController::Init_Implementation()
@@ -35,11 +34,18 @@ void AGEPPlayerController::Init_Implementation()
 		_ScoreWidget->AddToViewport();
 	}
 
+	if(_AmmoCounterClass)
+	{
+		_AmmoCounter = CreateWidget<UWidget_Bullets, AGEPPlayerController*>(this, _AmmoCounterClass.Get());
+		_AmmoCounter->AddToViewport();
+	}
+
 	if(_HpProgressBarClass)
 	{
 		_HpProgressBar = CreateWidget<UPlayerStatsUIWidget, AGEPPlayerController*>(this, _HpProgressBarClass.Get());
 		_HpProgressBar->AddToViewport();
 	}
+	
 }
 
 void AGEPPlayerController::Handle_MatchStarted_Implementation()
@@ -82,5 +88,14 @@ void AGEPPlayerController::DecreaseHp(float amount)
 	if(_HpProgressBar != nullptr)
 	{
 		_HpProgressBar->UpdateHealthBar(_Hp);
+	}
+}
+
+void AGEPPlayerController::ChangeAmmo(int ammo, int maxAmmo)
+{
+	_Ammo = ammo;
+	if(_AmmoCounter != nullptr)
+	{
+		_AmmoCounter->UpdateAmmo(ammo, maxAmmo);
 	}
 }

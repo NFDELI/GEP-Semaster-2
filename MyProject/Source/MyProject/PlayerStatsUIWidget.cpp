@@ -1,6 +1,8 @@
 #include "PlayerStatsUIWidget.h"
 
 #include "Components/ProgressBar.h"
+#include "Components/TextBlock.h"
+
 void UPlayerStatsUIWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
@@ -15,3 +17,4 @@ void UPlayerStatsUIWidget::UpdateHealthBar(float value)
 {
 	HealthBar->SetPercent(value);
 }
+

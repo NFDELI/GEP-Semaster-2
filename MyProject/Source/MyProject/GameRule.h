@@ -7,6 +7,7 @@
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGameRuleCompletedSignature, class UGameRule*, rule);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FGameRulePointsScoredSignature, AController*, scorer, int, points);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FGameRuleAmmoChangedSignature, AController*, reloader, int, ammo, int, maxAmmo);
 
 UCLASS(Abstract, ClassGroup=(Custom), meta = (BlueprintSpawnableComponent))
 class MYPROJECT_API UGameRule : public UActorComponent
@@ -18,6 +19,7 @@ public:
 
 	FGameRuleCompletedSignature OnGameRuleCompleted;
 	FGameRulePointsScoredSignature OnGameRulePointsScored;
+	FGameRuleAmmoChangedSignature OnGameRuleAmmoChanged;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool _IsOptional;
@@ -28,4 +30,5 @@ public:
 protected:
 	void BroadcastGameRuleCompleted();
 	void BroadcastGameRulePointsScored(AController* scorer, int points);
+	void BroadcastGameRuleAmmoChanged(AController* reloader, int ammo, int maxAmmo);
 };

@@ -5,6 +5,7 @@
 
 #include "EnhancedInputSubsystems.h"
 #include "GEPChar.h"
+#include "PlayerStatsUIWidget.h"
 #include "Widget_Score.h"
 #include "GameFramework/GameModeBase.h"
 #include "Kismet/GameplayStatics.h"
@@ -12,6 +13,7 @@
 AGEPPlayerController::AGEPPlayerController() : Super()
 {
 	_Score = 0;
+	_Hp = 1.0f;
 }
 
 void AGEPPlayerController::Init_Implementation()
@@ -31,6 +33,12 @@ void AGEPPlayerController::Init_Implementation()
 	{
 		_ScoreWidget = CreateWidget<UWidget_Score, AGEPPlayerController*>(this, _ScoreWidgetClass.Get());
 		_ScoreWidget->AddToViewport();
+	}
+
+	if(_HpProgressBarClass)
+	{
+		_HpProgressBar = CreateWidget<UPlayerStatsUIWidget, AGEPPlayerController*>(this, _HpProgressBarClass.Get());
+		_HpProgressBar->AddToViewport();
 	}
 }
 
@@ -65,5 +73,14 @@ void AGEPPlayerController::AddScore(int amount)
 	if(_ScoreWidget != nullptr)
 	{
 		_ScoreWidget->UpdateScore(_Score);
+	}
+}
+
+void AGEPPlayerController::DecreaseHp(float amount)
+{
+	_Hp -= amount / 100;
+	if(_HpProgressBar != nullptr)
+	{
+		_HpProgressBar->UpdateHealthBar(_Hp);
 	}
 }

@@ -80,6 +80,11 @@ void AMyProjectGameMode::Handle_GameRulePointsScored(AController* scorer, int po
 	{
 		castedPC->AddScore(points);
 	}
+
+	if(AGEPPlayerController* castedPC = Cast<AGEPPlayerController>(scorer))
+	{
+		castedPC->DecreaseHp(points);
+	}
 }
 
 void AMyProjectGameMode::BeginPlay()

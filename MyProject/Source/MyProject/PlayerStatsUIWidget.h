@@ -12,8 +12,7 @@
  * 
  */
 class UProgressBar;
-
-UCLASS(Abstract)
+UCLASS(Abstract, BlueprintType)
 class MYPROJECT_API UPlayerStatsUIWidget : public UBaseWidget
 {
 	GENERATED_BODY()

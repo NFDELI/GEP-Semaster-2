@@ -39,6 +39,9 @@ protected:
 	
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly)
 	TObjectPtr<UArrowComponent> _Muzzle;
+
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UParticleSystem> _MuzzleFlash;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float _MaxBullets;

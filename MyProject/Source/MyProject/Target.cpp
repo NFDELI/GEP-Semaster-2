@@ -1,6 +1,7 @@
 ﻿#include "Target.h"
 
 #include "HealthComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 UTarget::UTarget()
 {
@@ -27,6 +28,7 @@ void UTarget::BeginPlay()
 
 void UTarget::Handle_Dead(AController* causer)
 {
+	UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), _ParticleDeath, GetOwner()->GetActorLocation());
 	OnTargetDestroyed.Broadcast(GetOwner(), causer);
 	GetOwner()->Destroy();
 }

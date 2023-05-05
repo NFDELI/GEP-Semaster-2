@@ -25,6 +25,9 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TObjectPtr<UHealthComponent> _HealthComp;
 
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UParticleSystem> _ParticleDeath;
+
 private:
 	UFUNCTION()
 	void Handle_Dead(AController* causer);

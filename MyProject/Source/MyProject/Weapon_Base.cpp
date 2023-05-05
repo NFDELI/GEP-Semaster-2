@@ -1,8 +1,10 @@
 ﻿#include "Weapon_Base.h"
 
+#include "HairStrandsInterface.h"
 #include "MovieSceneSequenceID.h"
 #include "Blueprint/UserWidget.h"
 #include "EntitySystem/MovieSceneComponentTypeInfo.h"
+#include "Kismet/GameplayStatics.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogWeaponBase, Display, All);
 
@@ -41,6 +43,7 @@ bool AWeapon_Base::Bullet_Spent()
 	if(_CurrentBullets > 0)
 	{
 		_CurrentBullets--;
+		UGameplayStatics::SpawnEmitterAttached(_MuzzleFlash, _Mesh,TEXT("Muzzle"), FVector(0, 0, 0), FRotator(0, 0, 0), FVector(0.2));
 		//_HealthUI->UpdateHealthBar(0.1f);
 		//CALL UPDATE HEALTH HERE.
 		//_PlayerWidget->UpdateHealthBar(.1f);

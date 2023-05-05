@@ -15,6 +15,17 @@ AGEPPlayerController::AGEPPlayerController() : Super()
 	_Ammo = 0;
 }
 
+void AGEPPlayerController::BeginPlay()
+{
+	Super::BeginPlay();
+	HUD = CreateWidget(this, _HUDClass);
+	if(HUD != nullptr)
+	{
+		HUD->AddToViewport();
+	}
+}
+
+
 void AGEPPlayerController::Init_Implementation()
 {
 	if(UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer()))

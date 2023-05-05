@@ -2,12 +2,15 @@
 
 #include "PlayerStatsUIWidget.h"
 #include "Target_Shootable.h"
+#include "Camera/CameraComponent.h"
 #include "Components/ArrowComponent.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "Engine/World.h"
 #include "Kismet/GameplayStatics.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogWeaponHitScan, Display, All);
+
+
 
 bool AWeapon_Hitscan::Fire_Implementation()
 {
@@ -71,4 +74,9 @@ bool AWeapon_Hitscan::Reload_Implementation()
 		return true;
 	}
 	return false;
+}
+
+void AWeapon_Hitscan::BeginPlay()
+{
+	Super::BeginPlay();
 }

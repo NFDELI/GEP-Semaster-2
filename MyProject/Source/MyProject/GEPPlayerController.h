@@ -33,9 +33,16 @@ public:
 	void ChangeAmmo(int ammo, int maxAmmo);
 
 protected:
+
+	virtual void BeginPlay() override;
+	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<APawn> _PawnToSpawn;
 
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<class UUserWidget> _HUDClass;
+	TObjectPtr<UUserWidget> HUD;
+	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UWidget_Score> _ScoreWidgetClass;
 	TObjectPtr<UWidget_Score> _ScoreWidget;

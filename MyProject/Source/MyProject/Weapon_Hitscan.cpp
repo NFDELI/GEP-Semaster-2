@@ -10,8 +10,6 @@
 
 DEFINE_LOG_CATEGORY_STATIC(LogWeaponHitScan, Display, All);
 
-
-
 bool AWeapon_Hitscan::Fire_Implementation()
 {
 	if(Bullet_Spent())
@@ -71,6 +69,7 @@ bool AWeapon_Hitscan::Reload_Implementation()
 		UE_LOG(LogWeaponHitScan, Display, TEXT("Reloading! hitscan weapon class"));
 		//Reload the gun (call in blueprint)
 		_CurrentBullets = _MaxBullets;
+		_PlayerController->ChangeAmmo(_CurrentBullets, _MaxBullets);
 		return true;
 	}
 	return false;

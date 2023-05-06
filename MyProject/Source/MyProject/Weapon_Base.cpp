@@ -8,6 +8,7 @@
 #include "GameRule.h"
 #include "GEPChar.h"
 #include "GEPPlayerController.h"
+#include "Camera/CameraActor.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogWeaponBase, Display, All);
 
@@ -21,6 +22,9 @@ AWeapon_Base::AWeapon_Base()
 
 	_Muzzle = CreateDefaultSubobject<UArrowComponent>(TEXT("Muzzle"));
 	_Muzzle->SetupAttachment(_Mesh);
+
+	_Camera = Cast<UCameraComponent>(UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0));
+	_PlayerController = Cast<AGEPPlayerController>(UGameplayStatics::GetPlayerController(GetWorld(), 0));
 
 	//_HealthUI = CreateAbstractDefaultSubobject<UPlayerStatsUIWidget>(TEXT("UI"));
 	
@@ -46,13 +50,8 @@ bool AWeapon_Base::Bullet_Spent()
 	if(_CurrentBullets > 0)
 	{
 		_CurrentBullets--;
+		_PlayerController->ChangeAmmo(_CurrentBullets, _MaxBullets);
 		UGameplayStatics::SpawnEmitterAttached(_MuzzleFlash, _Mesh,TEXT("Muzzle"), FVector(0, 0, 0), FRotator(0, 0, 0), FVector(0.2));
-		//AGEPPlayerController::ChangeAmmo(_CurrentBullets, _MaxBullets);
-		if(_AmmoCounter)
-		{
-			_AmmoCounter->UpdateAmmo(_CurrentBullets, _MaxBullets);
-		}
-		
 		return true;
 	}
 

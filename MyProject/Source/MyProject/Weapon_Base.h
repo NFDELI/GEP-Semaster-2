@@ -4,8 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "Fireable.h"
+#include "GEPPlayerController.h"
 #include "PlayerStatsUIWidget.h"
 #include "Widget_Bullets.h"
+#include "Camera/CameraComponent.h"
 #include "Components/ArrowComponent.h"
 #include "GameFramework/Actor.h"
 #include "Weapon_Base.generated.h"
@@ -46,6 +48,12 @@ protected:
 
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UWidget_Bullets> _AmmoCounter;
+
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UCameraComponent> _Camera;
+	
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<AGEPPlayerController>_PlayerController;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float _MaxBullets;

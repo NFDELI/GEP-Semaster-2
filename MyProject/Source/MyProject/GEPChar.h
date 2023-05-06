@@ -40,12 +40,18 @@ class MYPROJECT_API AGEPChar : public ACharacter
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = TexCreate_InputAttachmentRead, meta=(AllowPrivateAccess="true"))
 	UInputAction* ReloadAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = TexCreate_InputAttachmentRead, meta=(AllowPrivateAccess="true"))
+	UInputAction* ZoomAction;
 public:
 	// Sets default values for this character's properties
 	AGEPChar();
 
 	UFUNCTION(BlueprintNativeEvent)
 	void Init();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+	bool _isZoomedIn;
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -63,6 +69,10 @@ protected:
 	void Shoot();
 
 	void Reload();
+
+	void ZoomIn();
+
+	void StopZoom();
 	
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;

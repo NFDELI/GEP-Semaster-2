@@ -20,6 +20,8 @@ AGEPChar::AGEPChar()
 
 	_WeaponAttachPoint = CreateDefaultSubobject<USceneComponent>(TEXT("WeaponAttachPoint"));
 	_WeaponAttachPoint->SetupAttachment(_Camera);
+
+	_isZoomedIn = false;
 }
 
 void AGEPChar::BeginPlay()
@@ -83,6 +85,25 @@ void AGEPChar::Reload()
 	}
 }
 
+void AGEPChar::ZoomIn()
+{
+	if(_Camera)
+	{
+		_Camera->SetFieldOfView(70.0f);
+	}
+	_isZoomedIn = true;
+}
+
+void AGEPChar::StopZoom()
+{
+	if(_Camera)
+	{
+		_Camera->SetFieldOfView(90.0f);
+	}
+	
+	_isZoomedIn = false;
+}
+
 void AGEPChar::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	if(UEnhancedInputComponent* EnchancedInputComponent = CastChecked<UEnhancedInputComponent>(PlayerInputComponent))
@@ -97,5 +118,8 @@ void AGEPChar::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 		EnchancedInputComponent->BindAction(ShootAction, ETriggerEvent::Triggered, this, &AGEPChar::Shoot);
 		
 		EnchancedInputComponent->BindAction(ReloadAction, ETriggerEvent::Triggered, this, &AGEPChar::Reload);
+
+		EnchancedInputComponent->BindAction(ZoomAction, ETriggerEvent::Triggered, this, &AGEPChar::ZoomIn);
+		EnchancedInputComponent->BindAction(ZoomAction, ETriggerEvent::Completed, this, &AGEPChar::StopZoom);
 	}
 }

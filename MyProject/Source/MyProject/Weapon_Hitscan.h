@@ -20,12 +20,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float _GunDamage;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Instanced, meta=(AllowPrivateAccess="true"))
-	TObjectPtr<UPlayerStatsUIWidget> _HealthUI;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TObjectPtr<ACameraActor> _Camera;
-
 private:
 	virtual void BeginPlay() override;
 };

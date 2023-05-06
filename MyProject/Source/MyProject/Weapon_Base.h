@@ -47,6 +47,9 @@ protected:
 	TObjectPtr<UParticleSystem> _MuzzleFlash;
 
 	UPROPERTY(EditAnywhere)
+	USoundBase* _MuzzleSound;
+
+	UPROPERTY(EditAnywhere)
 	TObjectPtr<UWidget_Bullets> _AmmoCounter;
 
 	UPROPERTY(EditAnywhere)

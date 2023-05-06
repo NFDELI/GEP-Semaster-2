@@ -51,6 +51,7 @@ bool AWeapon_Base::Bullet_Spent()
 	{
 		_CurrentBullets--;
 		_PlayerController->ChangeAmmo(_CurrentBullets, _MaxBullets);
+		UGameplayStatics::SpawnSoundAttached(_MuzzleSound, _Mesh, TEXT("Muzzle"));
 		UGameplayStatics::SpawnEmitterAttached(_MuzzleFlash, _Mesh,TEXT("Muzzle"), FVector(0, 0, 0), FRotator(0, 0, 0), FVector(0.2));
 		return true;
 	}

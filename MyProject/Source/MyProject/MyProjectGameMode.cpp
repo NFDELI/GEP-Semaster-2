@@ -46,6 +46,10 @@ void AMyProjectGameMode::Logout(AController* Exiting)
 	Super::Logout(Exiting);
 }
 
+void AMyProjectGameMode::PawnKilled(APawn* PawnKilled)
+{
+}
+
 void AMyProjectGameMode::DecreaseCountDown()
 {
 	_CountdownTimer--;

@@ -24,9 +24,22 @@ AGEPChar::AGEPChar()
 	_isZoomedIn = false;
 }
 
+float AGEPChar::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator,
+	AActor* DamageCauser)
+{
+	float DamageToApply = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
+	DamageToApply = FMath::Min(_Health, DamageToApply);
+	_Health -= DamageToApply;
+	UE_LOG(LogTemp, Warning, TEXT("Health left %f"), _Health);
+	
+	return DamageToApply;
+}
+
 void AGEPChar::BeginPlay()
 {
 	Super::BeginPlay();
+
+	_Health = _MaxHealth;
 }
 
 void AGEPChar::Init_Implementation()

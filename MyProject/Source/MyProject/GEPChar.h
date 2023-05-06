@@ -53,6 +53,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 	bool _isZoomedIn;
 
+	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController *EventInstigator, AActor *DamageCauser) override;
+
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<AWeapon_Base> _DefaultWeapon;
@@ -73,6 +75,12 @@ protected:
 	void ZoomIn();
 
 	void StopZoom();
+
+	UPROPERTY(EditDefaultsOnly)
+	float _MaxHealth = 100;
+
+	UPROPERTY(VisibleAnywhere)
+	float _Health;
 	
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;

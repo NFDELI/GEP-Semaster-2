@@ -76,6 +76,8 @@ void AMyProjectGameMode::Handle_GameRuleCompleted(UGameRule* rule)
 	if(_GameRulesLeft != 0) { return; }
 
 	EndMatch();
+
+	UGameplayStatics::OpenLevel(this, "MainMenuMap", true);
 }
 
 void AMyProjectGameMode::Handle_GameRulePointsScored(AController* scorer, int points)

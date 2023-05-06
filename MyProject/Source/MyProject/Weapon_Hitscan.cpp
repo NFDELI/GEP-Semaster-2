@@ -28,6 +28,7 @@ bool AWeapon_Hitscan::Fire_Implementation()
 		FHitResult hit(ForceInit);
 		FVector start = _Muzzle->GetComponentLocation();
 		FVector end = start + (_Muzzle->GetForwardVector() * 1000);
+		FRotator Rotation;
 		TArray<AActor*> ActorsToIgnore;
 
 		if(UKismetSystemLibrary::LineTraceSingle(world, start, end,
@@ -50,6 +51,7 @@ bool AWeapon_Hitscan::Fire_Implementation()
 			UGameplayStatics::ApplyDamage(hit.GetActor(), 100.f, GetInstigatorController(), this, UDamageType::StaticClass());
 			if(auto target = Cast<ATarget_Shootable>(hit.GetActor()))
 			{
+				FVector ShotDirection = -Rotation.Vector();
 				target->ShottedAt(_GunDamage);
 				//UE_LOG(LogWeaponHitScan, Display, TEXT("SHOTAT IS CALLED"));
 			}

@@ -58,6 +58,9 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess="true"))
 	TObjectPtr<UInputMappingContext> DefaultMappingContext;
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void GoToLoseScreen();
+
 	int _Score;
 	float _Hp;
 	int _Ammo;

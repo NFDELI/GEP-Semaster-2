@@ -25,7 +25,6 @@ void AGEPPlayerController::BeginPlay()
 	}
 }
 
-
 void AGEPPlayerController::Init_Implementation()
 {
 	if(UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer()))
@@ -99,6 +98,10 @@ void AGEPPlayerController::DecreaseHp(float amount)
 	if(_HpProgressBar != nullptr)
 	{
 		_HpProgressBar->UpdateHealthBar(_Hp);
+	}
+	if(_Hp <= 0)
+	{
+		GoToLoseScreen();
 	}
 }
 

@@ -44,7 +44,7 @@ bool AWeapon_Hitscan::Fire_Implementation()
 			//	UE_LOG(LogWeaponHitScan, Display, TEXT("Hit position!!: %s"), *hit.GetActor()->GetActorLabel());
 			//	ATarget_Shootable* temp = Cast<ATarget_Shootable>();
 			//	hit.Get
-//
+//-
 			//	//hit.GetActor()->GetClass()
 			//}
 
